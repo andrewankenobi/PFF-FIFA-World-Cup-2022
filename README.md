@@ -71,5 +71,4 @@ The main objective is to ingest, analyze, and potentially model the FIFA World C
     *   **Note 2:** Running `CREATE MODEL` statements in `bigqueryML.sql` will initiate model training jobs and incur BigQuery processing costs.
 
 ## Data Source
-
-The analysis relies on a publicly available FIFA World Cup 2022 dataset, typically sourced from platforms like Kaggle or specific sports data providers. The exact structure is detailed in the files within the `specifications/` directory. 
+The analysis relies on PFF FC's proprietary tracking and event data, which combines PFF event data with Sportlogiq broadcast tracking data. The data specification is detailed in the files within the `specifications/` directory, particularly in `Tracking-data.md` and `Event-data.md`. This includes synchronized game events, possession events, player tracking data, and performance grades.
