@@ -61,13 +61,26 @@ The main objective is to ingest, analyze, and potentially model the FIFA World C
         *   Model 4: Classify Player Role (Logistic Regression)
     *   **Included Testing Queries:** Examples using `ML.EVALUATE`, `ML.CENTROIDS`, and `ML.PREDICT` for each model.
     *   **Relevance:** Demonstrates how to build predictive (classification) and descriptive (clustering) models directly within BigQuery using the dataset.
+*   `conversational-analytics.sql`: Contains SQL statements to create BigQuery Views optimized for use with Looker Studio Conversational Analytics.
+    *   **Included Views:**
+        *   `vw_player_tournament_summary`: Aggregates player stats and includes a player similarity cluster ID (from `player_clusters_kmeans` BQML model).
+    *   **Relevance:** Provides simplified, analysis-ready data sources suitable for natural language querying via Looker Studio.
+*   `conversational-analytics-agent-conf.txt`: Contains configuration details (Name, Description, Instructions, Sample Questions) for a Looker Studio Data Agent.
+    *   **Target View:** Designed for use with the `vw_player_tournament_summary` view.
+    *   **Relevance:** Guides the Gemini model within Looker Studio to better understand the data context, terminology, and user intent, improving the quality of responses to natural language questions.
 
 ## Setup and Usage
 
-1.  **GCP Setup:** Follow the steps outlined in the `fifa_world_cup_gcp_plan` document for setting up your Google Cloud project, enabling APIs, and configuring permissions.
+1.  **GCP Setup:** Follow the steps outlined in the `fifa_world_cup_gcp_plan` document for setting up your Google Cloud project, enabling APIs (including Vertex AI for potential future use), and configuring permissions.
 2.  **Data Loading:** Load the FIFA World Cup 2022 dataset into a BigQuery dataset named `fifa_world_cup_2022` within your GCP project (e.g., `awesome-advice-420021`). Ensure the table schemas match those defined in `specifications/specifications-table_schemas.csv`. Refer to `specifications/Table_schemas.md` for detailed explanations of the schemas.
-3.  **Running Analysis & ML:** The SQL files (`basic-analysis.sql`, `bigqueryML.sql`, etc.) contain queries and model creation statements designed to run against the loaded BigQuery tables. You can execute these using the BigQuery UI, `bq` command-line tool, or programmatically via client libraries.
-    *   **Note 1:** The queries/models currently assume the dataset path is `awesome-advice-420021.fifa_world_cup_2022`. You may need to update the project ID in the SQL files to match your GCP project.
+3.  **Running Analysis & ML:** Execute the SQL in `basic-analysis.sql`, `fantasy-analysis.sql`, and `grades-analysis.sql` for data exploration. Run the `CREATE MODEL` statements in `bigqueryML.sql` to train the ML models (Note: incurs cost). Evaluate models using the testing queries provided.
+4.  **Conversational Analytics Setup:**
+    *   Run the `CREATE VIEW` statement(s) in `conversational-analytics.sql`.
+    *   In Looker Studio Pro, connect to the created BigQuery view(s) (e.g., `vw_player_tournament_summary`) as a data source. [Ref](https://cloud.google.com/looker/docs/studio/conversational-analytics-bigquery)
+    *   Configure the data source with user-friendly field names, descriptions, and aggregations.
+    *   (Optional) Create a Data Agent using the configuration from `conversational-analytics-agent-conf.txt` to enhance the natural language query experience. [Ref](https://cloud.google.com/looker/docs/studio/conversational-data-agents)
+    *   Use the Conversational Analytics feature to ask questions about the data (see sample questions in the agent config file).
+    *   **Note 1:** The queries/models/views currently assume the dataset path is `awesome-advice-420021.fifa_world_cup_2022`. You may need to update the project ID in the SQL files to match your GCP project.
     *   **Note 2:** Running `CREATE MODEL` statements in `bigqueryML.sql` will initiate model training jobs and incur BigQuery processing costs.
 
 ## Data Source
