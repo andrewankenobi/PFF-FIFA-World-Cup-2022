@@ -68,10 +68,11 @@ The main objective is to ingest, analyze, and potentially model the FIFA World C
 *   `conversational-analytics-agent-conf.txt`: Contains configuration details (Name, Description, Instructions, Sample Questions) for a Looker Studio Data Agent.
     *   **Target View:** Designed for use with the `vw_player_tournament_summary` view.
     *   **Relevance:** Guides the Gemini model within Looker Studio to better understand the data context, terminology, and user intent, improving the quality of responses to natural language questions.
+    *   **Example Agent Conversation:** [View Example](https://lookerstudio.google.com/u/0/conversation/fc91a0ab-20e1-421f-8ed6-b943f9069d00)
 
 ## Setup and Usage
 
-1.  **GCP Setup:** Follow the steps outlined in the `fifa_world_cup_gcp_plan` document for setting up your Google Cloud project, enabling APIs (including Vertex AI for potential future use), and configuring permissions.
+1.  **GCP Setup:** Follow the steps outlined in the `fifa_world_cup_gcp_plan` document for setting up your Google Cloud project, enabling APIs (including Vertex AI for potential future use), and configuring permissions. 
 2.  **Data Loading:** Load the FIFA World Cup 2022 dataset into a BigQuery dataset named `fifa_world_cup_2022` within your GCP project (e.g., `awesome-advice-420021`). Ensure the table schemas match those defined in `specifications/specifications-table_schemas.csv`. Refer to `specifications/Table_schemas.md` for detailed explanations of the schemas.
 3.  **Running Analysis & ML:** Execute the SQL in `basic-analysis.sql`, `fantasy-analysis.sql`, and `grades-analysis.sql` for data exploration. Run the `CREATE MODEL` statements in `bigqueryML.sql` to train the ML models (Note: incurs cost). Evaluate models using the testing queries provided.
 4.  **Conversational Analytics Setup:**
