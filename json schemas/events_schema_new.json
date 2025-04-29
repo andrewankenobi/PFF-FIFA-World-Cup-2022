@@ -1,0 +1,2125 @@
+[
+    {
+      "name": "match_id",
+      "type": "STRING"
+    },
+    {
+      "name": "gameId",
+      "type": "INTEGER",
+      "description": "A unique identifier for games."
+    },
+    {
+      "name": "gameEventId",
+      "type": "INTEGER",
+      "description": "A unique identifier for game events."
+    },
+    {
+      "name": "possessionEventId",
+      "type": "INTEGER",
+      "mode": "NULLABLE",
+      "description": "A unique identifier for possession events."
+    },
+    {
+      "name": "startTime",
+      "type": "FLOAT",
+      "description": "Time the possession starts in seconds. (In reference to the start of the video, not the game)"
+    },
+    {
+      "name": "endTime",
+      "type": "FLOAT",
+      "mode": "NULLABLE",
+      "description": "Time the possession ends in seconds. (In reference to the start of the video, not the game)"
+    },
+    {
+      "name": "duration",
+      "type": "FLOAT",
+      "description": "Duration of the possession in seconds."
+    },
+    {
+      "name": "eventTime",
+      "type": "FLOAT",
+      "description": "Time in seconds when the event took place. In reference to the start of the video"
+    },
+    {
+      "name": "gameEvents",
+      "type": "RECORD",
+      "mode": "NULLABLE",
+      "description": "Dictionary variable containing information regarding the game events.",
+      "fields": [
+        {
+          "name": "gameEventType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of game event.",
+          "values": [
+            "FIRSTKICKOFF",
+            "SECONDKICKOFF",
+            "THIRD KICKOFF",
+            "FOURTHKICKOFF",
+            "FOUL",
+            "END",
+            "G",
+            "OFF",
+            "ON",
+            "OTB",
+            "OUT",
+            "SUB"
+          ]
+        },
+        {
+          "name": "initialNonEvent",
+          "type": "BOOLEAN",
+          "mode": "NULLABLE",
+          "description": "Was the possession disallowed after the fact?",
+          "values": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "startGameClock",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Time the possession starts in second in reference to the start of the game"
+        },
+        {
+          "name": "startFormattedGameClock",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Time the possession starts in the \"00:00\" format."
+        },
+        {
+          "name": "period",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "The period (or half) the event took place.",
+          "values": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "videoMissing",
+          "type": "BOOLEAN",
+          "mode": "NULLABLE",
+          "description": "Is part of the event cut by the broadcast?",
+          "values": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "teamId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "A unique identifier for the team"
+        },
+        {
+          "name": "teamName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the team"
+        },
+        {
+          "name": "playerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player in possession."
+        },
+        {
+          "name": "playerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player in possession"
+        },
+        {
+          "name": "touches",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Total number of separate touches a player takes within their possession."
+        },
+        {
+          "name": "touchesInBox",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Number of touches in the opposition box a player takes within their possession."
+        },
+        {
+          "name": "setpieceType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of set piece being taken or type O when not a set piece",
+          "values": [
+            "C",
+            "D",
+            "F",
+            "G",
+            "K",
+            "O",
+            "P",
+            "T"
+          ]
+        },
+        {
+          "name": "earlyDistribution",
+          "type": "BOOLEAN",
+          "mode": "NULLABLE",
+          "description": "Is the set piece taken quickly?",
+          "values": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "videoUrl",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Link to video for the specific possession"
+        },
+        {
+          "name": "endType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Indicates the type of end event.",
+          "values": [
+            "1",
+            "2",
+            "F",
+            "G"
+          ]
+        },
+        {
+          "name": "outType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Indicates why the ball has gone out of play",
+          "values": [
+            "A",
+            "H",
+            "T",
+            "W"
+          ]
+        },
+        {
+          "name": "subType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of substitution",
+          "values": [
+            "H",
+            "S"
+          ]
+        },
+        {
+          "name": "playerOffId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique Identifier for the player coming off the pitch"
+        },
+        {
+          "name": "playerOffName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player coming off the pitch"
+        },
+        {
+          "name": "playerOffType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Reason for the player leaving the pitch",
+          "values": [
+            "E",
+            "I",
+            "M",
+            "R"
+          ]
+        },
+        {
+          "name": "playerOnId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique Identifier for the player coming on the pitch"
+        },
+        {
+          "name": "playerOnName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player coming on the pitch"
+        }
+      ]
+    },
+    {
+      "name": "initialTouch",
+      "type": "RECORD",
+      "mode": "NULLABLE",
+      "description": "Dictionary variable containing information regarding a player's first touch.",
+      "fields": [
+        {
+          "name": "initialBodyType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The Body part used to take the first touch"
+        },
+        {
+          "name": "initialHeightType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Height from where the ball was received."
+        },
+        {
+          "name": "facingType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Direction the player is facing at the point of reception.",
+          "values": [
+            "B",
+            "G",
+            "L"
+          ]
+        },
+        {
+          "name": "initialTouchType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Quality and difficulty when controlling the ball",
+          "values": [
+            "B",
+            "G",
+            "M",
+            "P",
+            "S"
+          ]
+        },
+        {
+          "name": "initialPressureType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of pressure being applied",
+          "values": [
+            "A",
+            "L",
+            "N",
+            "P"
+          ]
+        },
+        {
+          "name": "initialPressurePlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player applying the pressure"
+        },
+        {
+          "name": "initialPressurePlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player applying the pressure."
+        }
+      ]
+    },
+    {
+      "name": "possessionEvents",
+      "type": "RECORD",
+      "mode": "NULLABLE",
+      "description": "Dictionary variable containing information regarding the possession events.",
+      "fields": [
+        {
+          "name": "possessionEventType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of event.",
+          "values": [
+            "BC",
+            "CH",
+            "CL",
+            "CR",
+            "FO",
+            "PA",
+            "RE",
+            "SH",
+            "TC"
+          ]
+        },
+        {
+          "name": "nonEvent",
+          "type": "BOOLEAN",
+          "mode": "NULLABLE",
+          "description": "Is the event disallowed after the fact?",
+          "values": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "gameClock",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Time in seconds when the event took place. In reference to the start of the game"
+        },
+        {
+          "name": "formattedGameClock",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Time when the event took place in the \"00:00\" format."
+        },
+        {
+          "name": "eventVideoUrl",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Link to the video for the specific event."
+        },
+        {
+          "name": "ballHeightType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Height from where the ball was played."
+        },
+        {
+          "name": "bodyType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Body part used to hit the ball"
+        },
+        {
+          "name": "highPointType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Maximum height the ball reached from the point of the distribution and the next event (or the next bounce)"
+        },
+        {
+          "name": "passerPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player passing the ball."
+        },
+        {
+          "name": "passerPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player passing the ball"
+        },
+        {
+          "name": "passType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of pass played. We chart the intention of the pass",
+          "values": [
+            "B",
+            "C",
+            "F",
+            "H",
+            "O",
+            "S",
+            "T",
+            "W"
+          ]
+        },
+        {
+          "name": "passOutcomeType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The outcome of the pass.",
+          "values": [
+            "B",
+            "C",
+            "D",
+            "G",
+            "I",
+            "O",
+            "S"
+          ]
+        },
+        {
+          "name": "crosserPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the crosser player."
+        },
+        {
+          "name": "crosserPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player crossing the ball"
+        },
+        {
+          "name": "crossType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of cross. We chart intention",
+          "values": [
+            "D",
+            "F",
+            "I",
+            "O",
+            "P"
+          ]
+        },
+        {
+          "name": "crossZoneType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Where the cross was intended to go. Since we chart intention",
+          "values": [
+            "C",
+            "N",
+            "S",
+            "F"
+          ]
+        },
+        {
+          "name": "crossOutcomeType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The outcome of the cross.",
+          "values": [
+            "B",
+            "C",
+            "D",
+            "G",
+            "I",
+            "O",
+            "S"
+          ]
+        },
+        {
+          "name": "targetPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the intended target of the pass or cross."
+        },
+        {
+          "name": "targetPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player being targeted by the pass or cross"
+        },
+        {
+          "name": "targetFacingType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The direction the target is facing at the point of the pass. (Not applicable to crosses).",
+          "values": [
+            "B",
+            "G",
+            "L"
+          ]
+        },
+        {
+          "name": "receiverPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the teammate receiving the pass or cross. (Only applicable to completed passes)"
+        },
+        {
+          "name": "receiverPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player receiving the ball"
+        },
+        {
+          "name": "receiverFacingType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The direction the receiver is facing at the point the pass is played. (Note that if the target is the same as the receiver, those data points will be the same.)",
+          "values": [
+            "B",
+            "G",
+            "L"
+          ]
+        },
+        {
+          "name": "defenderPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identified for the defender when the outcome of the pass is \"D defensive interception\""
+        },
+        {
+          "name": "defenderPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the defender who ends up with the ball as a result of an incomplete pass"
+        },
+        {
+          "name": "blockerPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the defender when the outcome of the pass is \"B Blocked\". This variable also applies to clearance and shots that are blocked."
+        },
+        {
+          "name": "blockerPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player that blocks the distribution. This variable also applies to clearance and shots that are blocked."
+        },
+        {
+          "name": "deflectorPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player who deflects the ball. A deflection will be a lighter touch that will cause only a slight redirection. This variable also applies to shots, and if a light touch takes the ball off target or the goal is given as an own goal that is considered a block rather than a deflection on a shot."
+        },
+        {
+          "name": "deflectorPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player deflecting the ball. This variable also applies to shots and clearances."
+        },
+        {
+          "name": "failedBlockerPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player who attempts a block and fails. This variable also applies to shots and clearances."
+        },
+        {
+          "name": "failedBlockerPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who attempts a block and fails. This variable also applies to shots and clearances."
+        },
+        {
+          "name": "failedBlocker2PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player who attempts a block and fails. This variable also applies to shots and clearances."
+        },
+        {
+          "name": "failedBlocker2PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who attempts a block and fails. This variable also applies to shots and clearances."
+        },
+        {
+          "name": "failedBlocker3PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "If there are more than one block attempts failed, those are going to be recorded as the failedBlocker2PlayerId, failedblocker3PlayerId, and so on."
+        },
+        {
+          "name": "failedBlocker3PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the additional failed blocker, similar to above if we have more if we have more failed blockers it will be charted as failedBlocker4PlayerName, and so on"
+        },
+        {
+          "name": "accuracyType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Accuracy of the pass. Exclusive for completed passes."
+        },
+        {
+          "name": "incompletionReasonType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The reason the pass was incomplete."
+        },
+        {
+          "name": "secondIncompletionReasonType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "We can add up to two reasons for incompletion, so this will be the secondary reason."
+        },
+        {
+          "name": "linesBrokenType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Line of defense broken by the pass. Also applicable for ball carries and dribbles where a player breaks a line of defense."
+        },
+        {
+          "name": "shooterPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player trying to score"
+        },
+        {
+          "name": "shooterPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player shooting the ball."
+        },
+        {
+          "name": "bodyMovementType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The direction the shooter is moving as they take the shot.",
+          "values": [
+            "AG",
+            "LA",
+            "ST",
+            "TG"
+          ]
+        },
+        {
+          "name": "ballMoving",
+          "type": "BOOLEAN",
+          "mode": "NULLABLE",
+          "description": "Is the ball moving as the player takes the shot?",
+          "values": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "shotType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of shot attempted.",
+          "values": [
+            "B",
+            "D",
+            "F",
+            "I",
+            "L",
+            "O",
+            "V"
+          ]
+        },
+        {
+          "name": "shotNatureType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The nature of the shot indicates how the player tries to score",
+          "values": [
+            "A",
+            "F",
+            "P",
+            "T"
+          ]
+        },
+        {
+          "name": "shotInitialHeightType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The height where the goal crosses the goalline or would have crossed the goal line if not saved or blocked. This applies to events with outcome \"Inadvertent Shot at Goal/Own Goal\".",
+          "values": [
+            "BOTTOMTHIRD",
+            "MIDDLETHIRD",
+            "TOPTHIRD",
+            "C",
+            "F",
+            "G",
+            "N",
+            "O",
+            "U"
+          ]
+        },
+        {
+          "name": "shotOutcomeType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The outcome of the shot. This applies to events with outcome \"Inadvertent Shot at Goal/Own Goal\".",
+          "values": [
+            "B",
+            "C",
+            "F",
+            "G",
+            "L",
+            "O",
+            "S"
+          ]
+        },
+        {
+          "name": "keeperPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player trying to the goalkeeper trying to save the shot. This applies to events with outcome \"Inadvertent Shot at Goal/Own Goal\"."
+        },
+        {
+          "name": "keeperPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the goalkeeper trying to save the shot. This applies to events with outcome \"Inadvertent Shot at Goal/Own Goal\"."
+        },
+        {
+          "name": "saveHeightType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Height of the ball at the point of the save. This applies to events with outcome \"Inadvertent Shot at Goal/Own Goal\".",
+          "values": [
+            "BOTTOMTHIRD",
+            "MIDDLETHIRD",
+            "TOPTHIRD",
+            "C",
+            "F",
+            "G",
+            "N",
+            "O",
+            "U"
+          ]
+        },
+        {
+          "name": "saveReboundType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The direction the ball goes after being saved from the perspective of the shooter. This applies to events with outcome \"Inadvertent Shot at Goal/Own Goal\".",
+          "values": [
+            "CB",
+            "GL",
+            "GR",
+            "HL",
+            "HR",
+            "L6",
+            "LA",
+            "LO",
+            "LP",
+            "M6",
+            "MA",
+            "MO",
+            "OC",
+            "R6",
+            "RA",
+            "RO",
+            "RP"
+          ]
+        },
+        {
+          "name": "keeperTouchType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Body part with which the goal keeper touched the ball. Only used if the keeper touched the ball but it still ended up as a goal, or required a goalline clearance. This applies to events with outcome \"Inadvertent Shot at Goal/Own Goal\"."
+        },
+        {
+          "name": "glClearerPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player responsible for the goalline clearance (Only applicable for shotOutcomeType \"L - Goalline clearance\". This applies to events with outcome \"Inadvertent Shot at Goal/Own Goal\"."
+        },
+        {
+          "name": "glClearerPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player responsible for the goalline clearance. This applies to events with outcome \"Inadvertent Shot at Goal/Own Goal\"."
+        },
+        {
+          "name": "badParry",
+          "type": "BOOLEAN",
+          "mode": "NULLABLE",
+          "description": "Does the goalkeeper have the opportunity to do better with their parry?",
+          "values": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "saveable",
+          "type": "BOOLEAN",
+          "mode": "NULLABLE",
+          "description": "Did the keeper have a chance to save the shot that ended up in a goal or goalline clearance?",
+          "values": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "clearerPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player clearing the ball."
+        },
+        {
+          "name": "clearerPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player clearing the ball"
+        },
+        {
+          "name": "clearanceOutcomeType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Outcome of the clearance",
+          "values": [
+            "A",
+            "B",
+            "D",
+            "E",
+            "O",
+            "P",
+            "S",
+            "U"
+          ]
+        },
+        {
+          "name": "carrierPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player in control of the ball."
+        },
+        {
+          "name": "carrierPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player in control of the ball"
+        },
+        {
+          "name": "dribblerPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player trying to take on a defender."
+        },
+        {
+          "name": "dribblerPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player trying to take on a defender"
+        },
+        {
+          "name": "challengeType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of Challenge",
+          "values": [
+            "FIFTY",
+            "A",
+            "B",
+            "D",
+            "G",
+            "H",
+            "K",
+            "L",
+            "S",
+            "T"
+          ]
+        },
+        {
+          "name": "dribbleType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of dribble attempted, as the name suggests, only applicable for dribbles.",
+          "values": [
+            "B",
+            "I",
+            "K",
+            "O",
+            "T"
+          ]
+        },
+        {
+          "name": "tackleAttemptType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Within a dribble the challenger may or may not attempt a tackle. The tackle type is captured here. Only applicable to dribbles.",
+          "values": [
+            "D",
+            "F",
+            "G",
+            "T"
+          ]
+        },
+        {
+          "name": "trickType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of type attempted, only applicable to dribbles with dribbleType - Trick.",
+          "values": [
+            "C",
+            "D",
+            "E",
+            "F",
+            "N",
+            "O",
+            "R",
+            "S",
+            "U"
+          ]
+        },
+        {
+          "name": "challengerPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the primary challenger attempting a tackle, or being taken on by a dribble"
+        },
+        {
+          "name": "challengerPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the primary challenger attempting a tackle, or being taken on by a dribble"
+        },
+        {
+          "name": "challenger2PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the secondary challenger attempting a tackle, or being taken on by a dribble"
+        },
+        {
+          "name": "challenger2PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the secondary challenger attempting a tackle, or being taken on by a dribble"
+        },
+        {
+          "name": "homeDuelPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player on the home team primarily involved in a duel."
+        },
+        {
+          "name": "homeDuelPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player on the home team primarily involved in a duel."
+        },
+        {
+          "name": "awayDuelPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player on the away team primarily involved in a duel."
+        },
+        {
+          "name": "awayDuelPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player on the away team primarily involved in a duel."
+        },
+        {
+          "name": "additionalDuelerPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the additional player involved in the duel."
+        },
+        {
+          "name": "additionalDuelerPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the additional player involved in the duel."
+        },
+        {
+          "name": "additionalDueler2PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the additional player involved in the duel."
+        },
+        {
+          "name": "additionalDueler2PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the additional player involved in the duel."
+        },
+        {
+          "name": "challengeKeeperPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the goalkeeper involved in challenges of Type \"G- Goalkeeper Smothers\" or \"H - Handtackle\""
+        },
+        {
+          "name": "challengeKeeperPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the goalkeeper involved in challenges of Type \"G Goalkeeper Smothers\" or \"H- Handtackle\""
+        },
+        {
+          "name": "challengeWinnerPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player who wins the challenge*"
+        },
+        {
+          "name": "challengeWinnerPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who wins the challenge*"
+        },
+        {
+          "name": "challengeOutcomeType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Outcome of the challenge, some outcomes are only used in dribbles and some are not used in duels.",
+          "values": [
+            "B",
+            "C",
+            "D",
+            "F",
+            "I",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "R",
+            "S"
+          ]
+        },
+        {
+          "name": "ballCarrierPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player in control of the ball. Also applicable to touch and ball carries, but NOT applicable to duels."
+        },
+        {
+          "name": "ballCarrierPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player in control of the ball"
+        },
+        {
+          "name": "touchPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player who touched the ball."
+        },
+        {
+          "name": "touchPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who touched the ball."
+        },
+        {
+          "name": "carryType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of action that describes the ball carry.",
+          "values": [
+            "B",
+            "C",
+            "D"
+          ]
+        },
+        {
+          "name": "ballCarryOutcome",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Outcome of the ball carry attempted.",
+          "values": [
+            "C",
+            "L",
+            "R",
+            "S"
+          ]
+        },
+        {
+          "name": "carryDefenderPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player trying to defend the carry."
+        },
+        {
+          "name": "carryDefenderPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player defending the carry."
+        },
+        {
+          "name": "carryIntent",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "What the ball carriers intends to accomplish on the carry",
+          "values": [
+            "B",
+            "C",
+            "E"
+          ]
+        },
+        {
+          "name": "carrySuccessful",
+          "type": "BOOLEAN",
+          "mode": "NULLABLE",
+          "description": "Did the player successfully accomplish what they intended to do?",
+          "values": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "touchType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Touch encompasses a variety of events which are defined by the type of touch.",
+          "values": [
+            "C",
+            "D",
+            "F",
+            "G",
+            "H",
+            "L",
+            "P",
+            "S",
+            "T"
+          ]
+        },
+        {
+          "name": "touchOutcomeType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The outcome of a touch event.",
+          "values": [
+            "A",
+            "C",
+            "D",
+            "O",
+            "P",
+            "R"
+          ]
+        },
+        {
+          "name": "rebounderPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player the ball hits."
+        },
+        {
+          "name": "rebounderPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player the ball hits."
+        },
+        {
+          "name": "originateType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Where the ball comes from leading to the rebound.",
+          "values": [
+            "C",
+            "M",
+            "P",
+            "W"
+          ]
+        },
+        {
+          "name": "reboundOutcomeType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Outcome of the rebound",
+          "values": [
+            "A",
+            "D",
+            "P",
+            "T"
+          ]
+        },
+        {
+          "name": "missedTouchType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Similar to touch events, missed touches do not get a game event as the player fails to make contact with the ball, instead a missed touch will be captured within the previous event.",
+          "values": [
+            "C",
+            "D",
+            "I",
+            "L",
+            "M",
+            "O",
+            "P",
+            "S"
+          ]
+        },
+        {
+          "name": "missedTouchPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player who missed the ball."
+        },
+        {
+          "name": "missedTouchPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who misses the ball."
+        },
+        {
+          "name": "pressureType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of pressure being applied. Same options as the initial touch pressure, but referring to a pressure on the event instead.",
+          "values": [
+            "A",
+            "L",
+            "N",
+            "P"
+          ]
+        },
+        {
+          "name": "pressurePlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player who pressured the player in possession."
+        },
+        {
+          "name": "pressurePlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who pressure the player in possession"
+        },
+        {
+          "name": "opportunityType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Type of opportunity an event generates for their team or the opposing team.",
+          "values": [
+            "C",
+            "D",
+            "H",
+            "N",
+            "P"
+          ]
+        },
+        {
+          "name": "betterOptionType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "We would chart a better option if a player missed an opportunity to do something better with their possession. This captures the type of better Option",
+          "values": [
+            "B",
+            "C",
+            "H",
+            "L",
+            "O",
+            "P",
+            "S"
+          ]
+        },
+        {
+          "name": "betterOptionTime",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Time in seconds in reference to the start of the video (not the game) where the opportunity presented itself."
+        },
+        {
+          "name": "betterOptionPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "This is the unique identifier for the target of the pass, cross or takeover (ball carry). One scenario which is different is if there is a dummy and the better option would be for the target not to dummy it, in that case this data point refers to the player who attempted the dummy"
+        },
+        {
+          "name": "betterOptionPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the better option player as described above."
+        },
+        {
+          "name": "createsSpace",
+          "type": "BOOLEAN",
+          "mode": "NULLABLE",
+          "description": "Did the player in possession attempt to create space prior to a distribution (even if unsuccessful)?",
+          "values": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "csPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who created space."
+        },
+        {
+          "name": "csPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who created space."
+        },
+        {
+          "name": "csGrade",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player who created space."
+        },
+        {
+          "name": "positionPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who will receive a positional grade."
+        },
+        {
+          "name": "position2PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who will receive a positional grade."
+        },
+        {
+          "name": "position3PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who will receive a positional grade."
+        },
+        {
+          "name": "positionPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who will receive a positional grade."
+        },
+        {
+          "name": "position2PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who will receive a positional grade."
+        },
+        {
+          "name": "position3PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who will receive a positional grade."
+        },
+        {
+          "name": "position4PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who will receive a positional grade."
+        },
+        {
+          "name": "position4PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who will receive a positional grade."
+        },
+        {
+          "name": "position5PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who will receive a positional grade."
+        },
+        {
+          "name": "position5PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who will receive a positional grade."
+        },
+        {
+          "name": "closingDownPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who will receive a closing down grade."
+        },
+        {
+          "name": "closingDownPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who will receive a closing down grade."
+        },
+        {
+          "name": "closingDown2PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who will receive a closing down grade."
+        },
+        {
+          "name": "closingDown2PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who will receive a closing down grade."
+        },
+        {
+          "name": "movementPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who will receive a movement grade."
+        },
+        {
+          "name": "movementPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who will receive a movement grade."
+        },
+        {
+          "name": "dabPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who will receive a DAB (defending away from the ball) grade."
+        },
+        {
+          "name": "dabPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who will receive a DAB (defending away from the ball) grade."
+        },
+        {
+          "name": "dab2PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a second player who will receive a DAB (defending away from the ball) grade."
+        },
+        {
+          "name": "dab2PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the second player who will receive a DAB (defending away from the ball) grade."
+        },
+        {
+          "name": "failedClearerPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who failed to clear the ball."
+        },
+        {
+          "name": "failedClearerPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of a player who failed to clear the ball."
+        },
+        {
+          "name": "failedShooterPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who failed to shoot the ball."
+        },
+        {
+          "name": "failedShooterPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of a player who failed to shoot the ball."
+        },
+        {
+          "name": "movement2PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Grade given for an off the ball movement by a teammate."
+        },
+        {
+          "name": "movement2PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who will receive a movement grade."
+        },
+        {
+          "name": "movement3PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Grade given for an off the ball movement by a teammate."
+        },
+        {
+          "name": "movement3PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who will receive a movement grade."
+        },
+        {
+          "name": "disciplinePlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who will receive a discipline grade."
+        },
+        {
+          "name": "disciplinePlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who will receive a discipline grade."
+        },
+        {
+          "name": "discipline2PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who will receive a discipline grade."
+        },
+        {
+          "name": "discipline2PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who will receive a discipline grade."
+        },
+        {
+          "name": "discipline3PlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a third player who will receive a discipline grade."
+        },
+        {
+          "name": "discipline3PlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the third player who will receive a discipline grade."
+        },
+        {
+          "name": "failedPasserPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who failed to pass the ball."
+        },
+        {
+          "name": "failedPasserPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of a player who failed to pass the ball."
+        },
+        {
+          "name": "failedCrosserPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for a player who failed to cross the ball."
+        },
+        {
+          "name": "failedCrosserPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who failed to cross the ball."
+        }
+      ]
+    },
+    {
+      "name": "fouls",
+      "type": "RECORD",
+      "mode": "NULLABLE",
+      "description": "Dictionary variable containing information regarding fouls.",
+      "fields": [
+        {
+          "name": "onFieldCulpritPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player who committed the foul, as per the referee's initial decision."
+        },
+        {
+          "name": "onFieldCulpritPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who committed the foul, as per the referee's initial decision."
+        },
+        {
+          "name": "finalCulpritPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player who committed the foul, as per the referee's final decision, usually the same unless var is used for a card that is given to the wrong player."
+        },
+        {
+          "name": "finalCulpritPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who committed the foul, as per the referee's final decision, usually the same unless var is used for a card that is given to the wrong player."
+        },
+        {
+          "name": "victimPlayerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player who is the victim of the foul."
+        },
+        {
+          "name": "victimPlayerName",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Name of the player who is the victim of the foul"
+        },
+        {
+          "name": "foulType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Foul type defines if a foul is given, missed or an advantage is played.",
+          "values": [
+            "A",
+            "I",
+            "M"
+          ]
+        },
+        {
+          "name": "onFieldOffenseType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the offense type. The onFieldOffenseType represents the initial decision",
+          "values": [
+            "D",
+            "F",
+            "H",
+            "N",
+            "O",
+            "T",
+            "V"
+          ]
+        },
+        {
+          "name": "finalOffenseType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the offense type. The final OffenseType the final decision, those are usually the same even when VAR is True.",
+          "values": [
+            "D",
+            "F",
+            "H",
+            "N",
+            "O",
+            "T",
+            "V"
+          ]
+        },
+        {
+          "name": "onFieldFoulOutcomeType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The outcome of the foul, similarly to the other data points the on field and final outcome will be the same unless VAR is used.",
+          "values": [
+            "F",
+            "N",
+            "R",
+            "S",
+            "W",
+            "Y"
+          ]
+        },
+        {
+          "name": "finalFoulOutcomeType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The outcome of the foul, similarly to the other data points the on field and final outcome will be the same unless VAR is used.",
+          "values": [
+            "F",
+            "N",
+            "R",
+            "S",
+            "W",
+            "Y"
+          ]
+        },
+        {
+          "name": "var",
+          "type": "BOOLEAN",
+          "mode": "NULLABLE",
+          "description": "Was VAR used on the play? VAR is technically used in the background in many scenarios, like offsides, goals, possible penalties, so we only select \"True\" when the referee needs to go to the screen or the initial decision is overturned.",
+          "values": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "varReasonType",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "The reason VAR was used.",
+          "values": [
+            "I",
+            "O"
+          ]
+        },
+        {
+          "name": "correctDecision",
+          "type": "BOOLEAN",
+          "mode": "NULLABLE",
+          "description": "Was the final decision correct?",
+          "values": [
+            "True",
+            "False"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "grades",
+      "type": "RECORD",
+      "mode": "NULLABLE",
+      "description": "Dictionary variable containing the player grades.",
+      "fields": [
+        {
+          "name": "additionalDuelerGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade corresponding to the additionalDuelerPlayerId."
+        },
+        {
+          "name": "additionalDueler2Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade corresponding to the additionalDueler2PlayerId."
+        },
+        {
+          "name": "awayDuelGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the primary player from the away team involved in a duel, which would correspond to the away DuelerPlayerId."
+        },
+        {
+          "name": "ballCarrierGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade corresponding to the ballCarrierPlayerId. Only on Ball Carries."
+        },
+        {
+          "name": "blockerGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player blocking a distribution, corresponding to the blockerPlayerId."
+        },
+        {
+          "name": "carrierGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player to the player in control of the ball on a tackle. Corresponding to the ballCarrierPlayerId."
+        },
+        {
+          "name": "carryDefenderGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player defending a carry, which corresponds to the carry DefenderPlayerId."
+        },
+        {
+          "name": "challengerGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade corresponding to the challengerPlayerId."
+        },
+        {
+          "name": "challenger2Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade corresponding to the challenger2PlayerId."
+        },
+        {
+          "name": "challengeKeeperGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to a goalkeeper on a goalkeeper smothers or hand tackle, which corresponds to challenge Keeper PlayerId."
+        },
+        {
+          "name": "clearerGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player clearing the ball, which corresponds to the clearerPlayerId."
+        },
+        {
+          "name": "glClearerGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player responsible for a goalline clearance, which will correspond to the glClearerPlayerId."
+        },
+        {
+          "name": "closingDownGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player for their attempt (or lack thereof) to close down on the player in possession."
+        },
+        {
+          "name": "closingDown2Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player for their attempt (or lack thereof) to close down on the player in possession."
+        },
+        {
+          "name": "crosserGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the crosser, which corresponds to the crosse PlayerId"
+        },
+        {
+          "name": "csGrade",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player who created space."
+        },
+        {
+          "name": "dabGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to a player who will receive a DAB (defending away from the ball) grade."
+        },
+        {
+          "name": "dab2Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to a second player who will receive a DAB (defending away from the ball) grade."
+        },
+        {
+          "name": "defenderGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the defender that gets the ball on an incomplete pass or cross, which corresponds to the defenderPlayerId."
+        },
+        {
+          "name": "deflectorGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player who deflects a distribution, which corresponds to the deflectorPlayerId."
+        },
+        {
+          "name": "disciplineGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade (usually downgrade) given for discipline."
+        },
+        {
+          "name": "discipline2Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade (usually downgrade) given for discipline."
+        },
+        {
+          "name": "discipline3Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade (usually downgrade) given for discipline."
+        },
+        {
+          "name": "dribblerGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player trying to dribble past a defender, this will correspond to the ballCarrierPlayerId."
+        },
+        {
+          "name": "failedBlockerGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player attempting to block a distribution and failing."
+        },
+        {
+          "name": "failedBlocker2Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player attempting to block a distribution and failing."
+        },
+        {
+          "name": "failedBlocker3Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player attempting to block a distribution and failing."
+        },
+        {
+          "name": "failedClearerGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to a player who failed to clear the ball."
+        },
+        {
+          "name": "failedCrosserGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to a player who failed to cross the ball."
+        },
+        {
+          "name": "failedPasserGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to a player who failed to pass the ball."
+        },
+        {
+          "name": "failedShooterGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given for a player who failed to shoot the ball."
+        },
+        {
+          "name": "homeDuelGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the primary player from the home team involved in a duel, which would correspond to the homeDuelerPlayerId"
+        },
+        {
+          "name": "keeperGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to a keeper for their effort to save a shot or inadvertent shot, which would correspond to the keeperPlayerId."
+        },
+        {
+          "name": "movementGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given for an off the ball movement by a teammate."
+        },
+        {
+          "name": "movement2Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given for an off the ball movement by a teammate."
+        },
+        {
+          "name": "movement3Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given for an off the ball movement by a teammate."
+        },
+        {
+          "name": "passerGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player passing the ball, which will correspond to the passerPlayerld."
+        },
+        {
+          "name": "positionGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to a defensive player for their positioning."
+        },
+        {
+          "name": "position2Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to a defensive player for their positioning."
+        },
+        {
+          "name": "position3Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to a defensive player for their positioning."
+        },
+        {
+          "name": "position4Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player responsible for a positional value, which will correspond to the position4PlayerId."
+        },
+        {
+          "name": "position5Grade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player responsible for a positional value, which will correspond to the position5PlayerId."
+        },
+        {
+          "name": "receiverGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "A receiver grade will be the same as a movement grade, but specific to the recipient of a pass or cross. The grade will correspond to the receiver PlayerId."
+        },
+        {
+          "name": "shooterGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Grade given to the player attempting to score, which will correspond to the shooterPlayerId."
+        },
+        {
+          "name": "targetGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "A target grade will be the same as a movement grade, but specific to the target of a pass. The grade will correspond to the targetPlayerId."
+        },
+        {
+          "name": "touchGrade",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "A touch grade will be given to the player on a touch event with the exception of failed passes/crosses/shots/clearances as that is covered by the failed Passer/Crosser/Shooter/Clearer grades above. This grade will correspond to the ballCarrierPlayerId."
+        }
+      ]
+    },
+    {
+      "name": "homePlayers",
+      "type": "RECORD",
+      "mode": "REPEATED",
+      "description": "List of dictionary variables containing information regarding the broadcast tracking data for the players on the home team.",
+      "fields": [
+        {
+          "name": "jerseyNum",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Number of the Jersey of the player in question."
+        },
+        {
+          "name": "confidence",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Confidence level of the tracking data.",
+          "values": [
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ]
+        },
+        {
+          "name": "visibility",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Visibility status of the player.",
+          "values": [
+            "ESTIMATED",
+            "VISIBLE"
+          ]
+        },
+        {
+          "name": "x",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Player's x coordinate"
+        },
+        {
+          "name": "y",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Player's y coordinate"
+        },
+        {
+          "name": "speed",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Player's speed"
+        },
+        {
+          "name": "playerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player"
+        }
+      ]
+    },
+    {
+      "name": "awayPlayers",
+      "type": "RECORD",
+      "mode": "REPEATED",
+      "description": "List of dictionary variables containing information regarding the broadcast tracking data for the players on the away team.",
+      "fields": [
+        {
+          "name": "jerseyNum",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Number of the Jersey of the player in question."
+        },
+        {
+          "name": "confidence",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Confidence level of the tracking data.",
+          "values": [
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ]
+        },
+        {
+          "name": "visibility",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "Visibility status of the player.",
+          "values": [
+            "ESTIMATED",
+            "VISIBLE"
+          ]
+        },
+        {
+          "name": "x",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Player's x coordinate"
+        },
+        {
+          "name": "y",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Player's y coordinate"
+        },
+        {
+          "name": "speed",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Player's speed"
+        },
+        {
+          "name": "playerId",
+          "type": "INTEGER",
+          "mode": "NULLABLE",
+          "description": "Unique identifier for the player"
+        }
+      ]
+    },
+    {
+      "name": "ball",
+      "type": "RECORD",
+      "mode": "REPEATED",
+      "description": "Dictionary variable containing information regarding the broadcast tracking data for the ball.",
+      "fields": [
+        {
+          "name": "visibility",
+          "type": "STRING",
+          "mode": "NULLABLE",
+          "description": "This data point describes whether the location of the ball is estimated or visible.",
+          "values": [
+            "ESTIMATED",
+            "VISIBLE"
+          ]
+        },
+        {
+          "name": "x",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Ball's x coordinate"
+        },
+        {
+          "name": "y",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Ball's y coordinate"
+        },
+        {
+          "name": "z",
+          "type": "FLOAT",
+          "mode": "NULLABLE",
+          "description": "Ball's z coordinate"
+        }
+      ]
+    }
+  ]

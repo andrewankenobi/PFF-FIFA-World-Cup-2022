@@ -1,0 +1,92 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# FIFA World Cup 2022 GCP Project Plan
+
+This document outlines the steps to ingest, analyze, model, and build applications on top of the FIFA World Cup 2022 dataset using Google Cloud Platform services, with a focus on BigQuery, BigQuery ML, Vertex AI Gemini, and Vector Search.
+
+## Phase 1: Setup and Data Ingestion
+
+1.  **GCP Project Setup:**
+    *   [ ] Create or select an existing Google Cloud Project.
+    *   [ ] Enable necessary APIs:
+        *   BigQuery API
+        *   Vertex AI API
+        *   Cloud Storage API
+        *   IAM API
+    *   [ ] Configure IAM permissions for users/service accounts.
+    *   [ ] Install and configure `gcloud` CLI and `bq` tool.
+
+2.  **Data Acquisition & Preparation:**
+    *   [ ] Identify and download the FIFA World Cup 2022 dataset (Specify source, e.g., Kaggle).
+    *   [ ] Explore dataset structure (CSV files, JSON, etc.).
+    *   [ ] Define BigQuery schemas for each relevant data file.
+    *   [ ] (Optional) Pre-process or clean data locally if needed.
+
+3.  **Data Loading into BigQuery:**
+    *   [ ] Create a new BigQuery dataset (e.g., `fifa_world_cup_2022`).
+    *   [ ] Create tables in the dataset based on defined schemas.
+    *   [ ] Upload data files to Google Cloud Storage (GCS).
+    *   [ ] Load data from GCS into BigQuery tables using `bq load` or the BigQuery UI.
+    *   [ ] Verify data loading completeness and correctness.
+
+## Phase 2: Analytics and Machine Learning
+
+4.  **Basic Analytics (BigQuery SQL):**
+    *   [ ] Write exploratory SQL queries:
+        *   Top goal scorers.
+        *   Match results analysis (wins, losses, draws per team).
+        *   Group stage standings.
+        *   Player statistics (passes, tackles, saves).
+    *   [ ] Create useful Views for recurring analytical patterns.
+    *   [ ] (Optional) Connect Looker Studio or other BI tool for visualization.
+
+5.  **BigQuery ML Modeling:**
+    *   [ ] Identify potential ML use cases (e.g., predict match winner, classify player roles based on stats).
+    *   [ ] Prepare feature data using BigQuery SQL transformations.
+    *   [ ] Train simple BQML models (e.g., `LOGISTIC_REG`, `KMEANS`) using `CREATE MODEL`.
+    *   [ ] Evaluate model performance using `ML.EVALUATE`.
+    *   [ ] Use `ML.PREDICT` for batch predictions.
+
+## Phase 3: Advanced Use Cases and GenAI
+
+6.  **Vector Search Setup (BigQuery):**
+    *   [ ] Identify textual or high-dimensional data for embedding (e.g., player bios, team descriptions, match commentary if available).
+    *   [ ] Generate embeddings:
+        *   Use Vertex AI Embedding API (e.g., `text-embedding-004`) via SQL/Python.
+        *   Store embeddings (`ARRAY<FLOAT64>`) in a BigQuery table column.
+    *   [ ] Create a Vector Index on the embedding column using `CREATE VECTOR INDEX`. Configure `DISTANCE_TYPE` (e.g., `COSINE`, `EUCLIDEAN`) and `INDEX_TYPE` (e.g., `IVF`).
+    *   [ ] Monitor index creation progress.
+
+7.  **Similarity Search Use Case (BigQuery Vector Search):**
+    *   [ ] Develop SQL queries using `VECTOR_SEARCH` function.
+    *   [ ] Find players similar to a given player based on embedded stats/bio.
+    *   [ ] Find matches with similar characteristics or narratives.
+    *   [ ] Compare results with/without index (`use_brute_force=true`).
+    *   [ ] Evaluate recall and tune index parameters (`fraction_lists_to_search`).
+
+8.  **"Talk to your Data" App (Vertex AI Gemini):**
+    *   [ ] Choose a framework for the application (e.g., Streamlit, Flask).
+    *   [ ] Set up backend service (e.g., Cloud Functions, Cloud Run).
+    *   [ ] Integrate with Vertex AI SDK for Python.
+    *   [ ] Design prompts for `gemini-2.5-flash-preview-04-17` to:
+        *   Understand natural language questions about the FIFA data.
+        *   Generate valid BigQuery SQL queries based on the questions and table schemas.
+        *   (Optional) Summarize query results in natural language.
+    *   [ ] Implement logic to execute generated SQL against BigQuery and display results.
+    *   [ ] Handle potential errors (invalid SQL, query failures).
+
+9.  **Additional Use Cases (Ideation & Potential Implementation):**
+    *   [ ] **Fantasy League Points Calculator:** Write SQL UDFs or queries to calculate fantasy points based on player actions (goals, assists, clean sheets, etc.).
+    *   [ ] **Player Scouting Tool:** Combine BQML predictions, statistical analysis, and similarity search results to identify players matching specific criteria.
+    *   [ ] **Match Narrator:** Use Gemini to generate textual summaries or highlights of matches based on structured event data from BigQuery.
+
+## Phase 4: Documentation and Cleanup
+
+10. **Documentation:**
+    *   [ ] Document the schemas, queries, models, and application logic.
+    *   [ ] Record findings and insights.
+11. **Cleanup:**
+    *   [ ] Delete or archive GCS buckets, BigQuery datasets/tables, Vertex AI endpoints, and other resources if no longer needed to manage costs.

@@ -1,0 +1,98 @@
+{
+  "sourceUris": ["gs://fifa_data_22/tracking_data/*.jsonl.bz2"],
+  "schema": {
+    "fields": [
+      {"name": "version", "type": "STRING"},
+      {"name": "gameRefId", "type": "FLOAT"},
+      {"name": "generatedTime", "type": "TIMESTAMP"},
+      {"name": "smoothedTime", "type": "TIMESTAMP"},
+      {"name": "videoTimeMs", "type": "FLOAT"},
+      {"name": "frameNum", "type": "INTEGER"},
+      {"name": "period", "type": "INTEGER"},
+      {"name": "periodElapsedTime", "type": "FLOAT"},
+      {"name": "periodGameClockTime", "type": "FLOAT"},
+      {"name": "homePlayers", "type": "RECORD", "mode": "REPEATED", "fields": [
+        {"name": "jerseyNum", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "confidence", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "visibility", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "x", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "y", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "speed", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "playerId", "type": "INTEGER", "mode": "NULLABLE"}
+      ]},
+      {"name": "homePlayersSmoothed", "type": "RECORD", "mode": "REPEATED", "fields": [
+        {"name": "jerseyNum", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "confidence", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "visibility", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "x", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "y", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "playerId", "type": "INTEGER", "mode": "NULLABLE"}
+      ]},
+      {"name": "awayPlayers", "type": "RECORD", "mode": "REPEATED", "fields": [
+        {"name": "jerseyNum", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "confidence", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "visibility", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "x", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "y", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "speed", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "playerId", "type": "INTEGER", "mode": "NULLABLE"}
+      ]},
+      {"name": "awayPlayersSmoothed", "type": "RECORD", "mode": "REPEATED", "fields": [
+        {"name": "jerseyNum", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "confidence", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "visibility", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "x", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "y", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "playerId", "type": "INTEGER", "mode": "NULLABLE"}
+      ]},
+      {"name": "balls", "type": "RECORD", "mode": "REPEATED", "fields": [
+        {"name": "visibility", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "x", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "y", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "z", "type": "FLOAT", "mode": "NULLABLE"}
+      ]},
+      {"name": "ballsSmoothed", "type": "RECORD", "mode": "NULLABLE", "fields": [
+        {"name": "visibility", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "x", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "y", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "z", "type": "FLOAT", "mode": "NULLABLE"}
+      ]},
+      {"name": "game_event_id", "type": "FLOAT", "mode": "NULLABLE"},
+      {"name": "possession_event_id", "type": "FLOAT", "mode": "NULLABLE"},
+      {"name": "game_event", "type": "RECORD", "mode": "NULLABLE", "fields": [
+        {"name": "game_id", "type": "INTEGER", "mode": "NULLABLE"},
+        {"name": "game_event_type", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "formatted_game_clock", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "player_id", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "player_name", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "shirt_number", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "position_group_type", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "team_id", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "team_name", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "start_time", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "end_time", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "duration", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "inserted_at", "type": "TIMESTAMP", "mode": "NULLABLE"},
+        {"name": "updated_at", "type": "TIMESTAMP", "mode": "NULLABLE"},
+        {"name": "video_url", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "home_team", "type": "INTEGER", "mode": "NULLABLE"},
+        {"name": "sequence", "type": "INTEGER", "mode": "NULLABLE"},
+        {"name": "home_ball", "type": "BOOLEAN", "mode": "NULLABLE"},
+        {"name": "start_frame", "type": "INTEGER", "mode": "NULLABLE"},
+        {"name": "end_frame", "type": "INTEGER", "mode": "NULLABLE"}
+      ]},
+      {"name": "possession_event", "type": "RECORD", "mode": "NULLABLE", "fields": [
+        {"name": "game_id", "type": "INTEGER", "mode": "NULLABLE"},
+        {"name": "game_event_id", "type": "INTEGER", "mode": "NULLABLE"},
+        {"name": "possession_event_type", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "formatted_game_clock", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "start_time", "type": "FLOAT", "mode": "NULLABLE"},
+        {"name": "inserted_at", "type": "TIMESTAMP", "mode": "NULLABLE"},
+        {"name": "updated_at", "type": "TIMESTAMP", "mode": "NULLABLE"},
+        {"name": "start_frame", "type": "INTEGER", "mode": "NULLABLE"}
+      ]}
+    ]
+  },
+  "sourceFormat": "NEWLINE_DELIMITED_JSON",
+  "compression": "BZIP2"
+} 

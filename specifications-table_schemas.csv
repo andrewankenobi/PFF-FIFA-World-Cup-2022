@@ -1,0 +1,75 @@
+shell-init: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+shell-init: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+table_name,column_name,data_type
+competitions,games,STRING
+competitions,id,INT64
+competitions,name,STRING
+events,match_id,STRING
+events,gameId,INT64
+events,gameEventId,INT64
+events,possessionEventId,INT64
+events,startTime,FLOAT64
+events,endTime,FLOAT64
+events,duration,FLOAT64
+events,eventTime,FLOAT64
+events,gameEvents,"STRUCT<gameEventType STRING, initialNonEvent BOOL, startGameClock FLOAT64, startFormattedGameClock STRING, period INT64, videoMissing BOOL, teamId INT64, teamName STRING, playerId INT64, playerName STRING, touches INT64, touchesInBox INT64, setpieceType STRING, earlyDistribution BOOL, videoUrl STRING, endType STRING, outType STRING, subType STRING, playerOffId INT64, playerOffName STRING, playerOffType STRING, playerOnId INT64, playerOnName STRING>"
+events,initialTouch,"STRUCT<initialBodyType STRING, initialHeightType STRING, facingType STRING, initialTouchType STRING, initialPressureType STRING, initialPressurePlayerId INT64, initialPressurePlayerName STRING>"
+events,possessionEvents,"STRUCT<possessionEventType STRING, nonEvent BOOL, gameClock FLOAT64, formattedGameClock STRING, eventVideoUrl STRING, ballHeightType STRING, bodyType STRING, highPointType STRING, passerPlayerId INT64, passerPlayerName STRING, passType STRING, passOutcomeType STRING, crosserPlayerId INT64, crosserPlayerName STRING, crossType STRING, crossZoneType STRING, crossOutcomeType STRING, targetPlayerId INT64, targetPlayerName STRING, targetFacingType STRING, receiverPlayerId INT64, receiverPlayerName STRING, receiverFacingType STRING, defenderPlayerId INT64, defenderPlayerName STRING, blockerPlayerId INT64, blockerPlayerName STRING, deflectorPlayerId INT64, deflectorPlayerName STRING, failedBlockerPlayerId INT64, failedBlockerPlayerName STRING, failedBlocker2PlayerId INT64, failedBlocker2PlayerName STRING, failedBlocker3PlayerId INT64, failedBlocker3PlayerName STRING, accuracyType STRING, incompletionReasonType STRING, secondIncompletionReasonType STRING, linesBrokenType STRING, shooterPlayerId INT64, shooterPlayerName STRING, bodyMovementType STRING, ballMoving BOOL, shotType STRING, shotNatureType STRING, shotInitialHeightType STRING, shotOutcomeType STRING, keeperPlayerId INT64, keeperPlayerName STRING, saveHeightType STRING, saveReboundType STRING, keeperTouchType STRING, glClearerPlayerId INT64, glClearerPlayerName STRING, badParry BOOL, saveable BOOL, clearerPlayerId INT64, clearerPlayerName STRING, clearanceOutcomeType STRING, carrierPlayerId INT64, carrierPlayerName STRING, dribblerPlayerId INT64, dribblerPlayerName STRING, challengeType STRING, dribbleType STRING, tackleAttemptType STRING, trickType STRING, challengerPlayerId INT64, challengerPlayerName STRING, challenger2PlayerId INT64, challenger2PlayerName STRING, homeDuelPlayerId INT64, homeDuelPlayerName STRING, awayDuelPlayerId INT64, awayDuelPlayerName STRING, additionalDuelerPlayerId INT64, additionalDuelerPlayerName STRING, additionalDueler2PlayerId INT64, additionalDueler2PlayerName STRING, challengeKeeperPlayerId INT64, challengeKeeperPlayerName STRING, challengeWinnerPlayerId INT64, challengeWinnerPlayerName STRING, challengeOutcomeType STRING, ballCarrierPlayerId INT64, ballCarrierPlayerName STRING, touchPlayerId INT64, touchPlayerName STRING, carryType STRING, ballCarryOutcome STRING, carryDefenderPlayerId INT64, carryDefenderPlayerName STRING, carryIntent STRING, carrySuccessful BOOL, touchType STRING, touchOutcomeType STRING, rebounderPlayerId INT64, rebounderPlayerName STRING, originateType STRING, reboundOutcomeType STRING, missedTouchType STRING, missedTouchPlayerId INT64, missedTouchPlayerName STRING, pressureType STRING, pressurePlayerId INT64, pressurePlayerName STRING, opportunityType STRING, betterOptionType STRING, betterOptionTime FLOAT64, betterOptionPlayerId INT64, betterOptionPlayerName STRING, createsSpace BOOL, csPlayerId INT64, csPlayerName STRING, csGrade STRING, positionPlayerId INT64, position2PlayerId INT64, position3PlayerId INT64, positionPlayerName STRING, position2PlayerName STRING, position3PlayerName STRING, position4PlayerId INT64, position4PlayerName STRING, position5PlayerId INT64, position5PlayerName STRING, closingDownPlayerId INT64, closingDownPlayerName STRING, closingDown2PlayerId INT64, closingDown2PlayerName STRING, movementPlayerId INT64, movementPlayerName STRING, dabPlayerId INT64, dabPlayerName STRING, dab2PlayerId INT64, dab2PlayerName STRING, failedClearerPlayerId INT64, failedClearerPlayerName STRING, failedShooterPlayerId INT64, failedShooterPlayerName STRING, movement2PlayerId INT64, movement2PlayerName STRING, movement3PlayerId INT64, movement3PlayerName STRING, disciplinePlayerId INT64, disciplinePlayerName STRING, discipline2PlayerId INT64, discipline2PlayerName STRING, discipline3PlayerId INT64, discipline3PlayerName STRING, failedPasserPlayerId INT64, failedPasserPlayerName STRING, failedCrosserPlayerId INT64, failedCrosserPlayerName STRING>"
+events,fouls,"STRUCT<onFieldCulpritPlayerId INT64, onFieldCulpritPlayerName STRING, finalCulpritPlayerId INT64, finalCulpritPlayerName STRING, victimPlayerId INT64, victimPlayerName STRING, foulType STRING, onFieldOffenseType STRING, finalOffenseType STRING, onFieldFoulOutcomeType STRING, finalFoulOutcomeType STRING, var BOOL, varReasonType STRING, correctDecision BOOL>"
+events,grades,"STRUCT<additionalDuelerGrade FLOAT64, additionalDueler2Grade FLOAT64, awayDuelGrade FLOAT64, ballCarrierGrade FLOAT64, blockerGrade FLOAT64, carrierGrade FLOAT64, carryDefenderGrade FLOAT64, challengerGrade FLOAT64, challenger2Grade FLOAT64, challengeKeeperGrade FLOAT64, clearerGrade FLOAT64, glClearerGrade FLOAT64, closingDownGrade FLOAT64, closingDown2Grade FLOAT64, crosserGrade FLOAT64, csGrade STRING, dabGrade FLOAT64, dab2Grade FLOAT64, defenderGrade FLOAT64, deflectorGrade FLOAT64, disciplineGrade FLOAT64, discipline2Grade FLOAT64, discipline3Grade FLOAT64, dribblerGrade FLOAT64, failedBlockerGrade FLOAT64, failedBlocker2Grade FLOAT64, failedBlocker3Grade FLOAT64, failedClearerGrade FLOAT64, failedCrosserGrade FLOAT64, failedPasserGrade FLOAT64, failedShooterGrade FLOAT64, homeDuelGrade FLOAT64, keeperGrade FLOAT64, movementGrade FLOAT64, movement2Grade FLOAT64, movement3Grade FLOAT64, passerGrade FLOAT64, positionGrade FLOAT64, position2Grade FLOAT64, position3Grade FLOAT64, position4Grade FLOAT64, position5Grade FLOAT64, receiverGrade FLOAT64, shooterGrade FLOAT64, targetGrade FLOAT64, touchGrade FLOAT64>"
+events,homePlayers,"ARRAY<STRUCT<jerseyNum INT64, confidence STRING, visibility STRING, x FLOAT64, y FLOAT64, speed FLOAT64, playerId INT64>>"
+events,awayPlayers,"ARRAY<STRUCT<jerseyNum INT64, confidence STRING, visibility STRING, x FLOAT64, y FLOAT64, speed FLOAT64, playerId INT64>>"
+events,ball,"ARRAY<STRUCT<visibility STRING, x FLOAT64, y FLOAT64, z FLOAT64>>"
+match_metadata,awayTeam,"STRUCT<id STRING, name STRING, shortName STRING>"
+match_metadata,awayTeamKit,"STRUCT<name STRING, primaryColor STRING, primaryTextColor STRING, secondaryColor STRING, secondaryTextColor STRING>"
+match_metadata,competition,"STRUCT<id STRING, name STRING>"
+match_metadata,date,TIMESTAMP
+match_metadata,endPeriod1,TIMESTAMP
+match_metadata,endPeriod2,TIMESTAMP
+match_metadata,halfPeriod,TIMESTAMP
+match_metadata,homeTeam,"STRUCT<id STRING, name STRING, shortName STRING>"
+match_metadata,homeTeamKit,"STRUCT<name STRING, primaryColor STRING, primaryTextColor STRING, secondaryColor STRING, secondaryTextColor STRING>"
+match_metadata,homeTeamStartLeft,BOOL
+match_metadata,homeTeamStartLeftExtraTime,BOOL
+match_metadata,id,STRING
+match_metadata,period1,TIMESTAMP
+match_metadata,period2,TIMESTAMP
+match_metadata,season,STRING
+match_metadata,stadium,"STRUCT<id STRING, name STRING, pitches ARRAY<STRUCT<endDate TIMESTAMP, id STRING, length FLOAT64, startDate DATE, width FLOAT64>>>"
+match_metadata,startPeriod1,TIMESTAMP
+match_metadata,startPeriod2,TIMESTAMP
+match_metadata,week,INT64
+match_metadata,fps,FLOAT64
+match_metadata,videoUrl,STRING
+players,dob,DATE
+players,firstName,STRING
+players,height,FLOAT64
+players,id,INT64
+players,lastName,STRING
+players,nickname,STRING
+players,positionGroupType,STRING
+rosters,match_id,STRING
+rosters,player,"STRUCT<id STRING, nickname STRING>"
+rosters,positionGroupType,STRING
+rosters,shirtNumber,INT64
+rosters,started,BOOL
+rosters,team,"STRUCT<id STRING, name STRING>"
+tracking_data,possession_event,"STRUCT<start_frame INT64, updated_at TIMESTAMP, inserted_at TIMESTAMP, start_time FLOAT64, formatted_game_clock STRING, possession_event_type STRING, game_event_id INT64, game_id INT64>"
+tracking_data,balls,"ARRAY<STRUCT<z FLOAT64, y FLOAT64, x FLOAT64, visibility STRING>>"
+tracking_data,awayPlayersSmoothed,"ARRAY<STRUCT<visibility STRING, confidence STRING, y FLOAT64, x FLOAT64, jerseyNum INT64>>"
+tracking_data,awayPlayers,"ARRAY<STRUCT<speed FLOAT64, visibility STRING, confidence STRING, y FLOAT64, x FLOAT64, jerseyNum INT64>>"
+tracking_data,period,INT64
+tracking_data,possession_event_id,FLOAT64
+tracking_data,game_event_id,FLOAT64
+tracking_data,gameRefId,FLOAT64
+tracking_data,frameNum,INT64
+tracking_data,generatedTime,TIMESTAMP
+tracking_data,ballsSmoothed,"STRUCT<z FLOAT64, y FLOAT64, x FLOAT64, visibility STRING>"
+tracking_data,homePlayers,"ARRAY<STRUCT<speed FLOAT64, visibility STRING, confidence STRING, y FLOAT64, x FLOAT64, jerseyNum INT64>>"
+tracking_data,videoTimeMs,FLOAT64
+tracking_data,game_event,"STRUCT<start_frame INT64, sequence INT64, home_team INT64, video_url STRING, end_frame INT64, updated_at TIMESTAMP, duration FLOAT64, player_name STRING, position_group_type STRING, end_time FLOAT64, home_ball BOOL, inserted_at TIMESTAMP, start_time FLOAT64, team_id INT64, formatted_game_clock STRING, game_event_type STRING, team_name STRING, shirt_number INT64, player_id INT64, game_id INT64>"
+tracking_data,smoothedTime,TIMESTAMP
+tracking_data,homePlayersSmoothed,"ARRAY<STRUCT<visibility STRING, confidence STRING, y FLOAT64, x FLOAT64, jerseyNum INT64>>"
+tracking_data,periodGameClockTime,FLOAT64
+tracking_data,periodElapsedTime,FLOAT64
+tracking_data,version,STRING
