@@ -1,5 +1,7 @@
 # FIFA World Cup 2022 Analysis Project
 
+![Project Overview Image](image.jpeg)
+
 This project focuses on analyzing the FIFA World Cup 2022 dataset using Google Cloud Platform services, primarily Google BigQuery.
 
 ## Project Goal
