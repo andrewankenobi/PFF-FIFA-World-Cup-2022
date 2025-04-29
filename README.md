@@ -51,13 +51,22 @@ The main objective is to ingest, analyze, and potentially model the FIFA World C
         *   Query 9: Average Passer Grade by Position Group
         *   Query 10: Highest Average Passer Grade in a Single Match (Min 20 Passes)
     *   **Relevance:** Enables a deeper, potentially more nuanced evaluation of player and team performance beyond simple counts or outcomes, using PFF's grading system.
+*   `bigqueryML.sql`: Contains SQL statements to create and test BigQuery ML models.
+    *   **Included Models:**
+        *   Model 1: Predict Match Outcome (Logistic Regression)
+        *   Model 2: Cluster Players (K-Means)
+        *   Model 3: Predict Goal Likelihood (Logistic Regression)
+        *   Model 4: Classify Player Role (Logistic Regression)
+    *   **Included Testing Queries:** Examples using `ML.EVALUATE`, `ML.CENTROIDS`, and `ML.PREDICT` for each model.
+    *   **Relevance:** Demonstrates how to build predictive (classification) and descriptive (clustering) models directly within BigQuery using the dataset.
 
 ## Setup and Usage
 
 1.  **GCP Setup:** Follow the steps outlined in the `fifa_world_cup_gcp_plan` document for setting up your Google Cloud project, enabling APIs, and configuring permissions.
 2.  **Data Loading:** Load the FIFA World Cup 2022 dataset into a BigQuery dataset named `fifa_world_cup_2022` within your GCP project (e.g., `awesome-advice-420021`). Ensure the table schemas match those defined in `specifications/specifications-table_schemas.csv`. Refer to `specifications/Table_schemas.md` for detailed explanations of the schemas.
-3.  **Running Analysis:** The SQL files (`basic-analysis.sql`, etc.) contain queries designed to run against the loaded BigQuery tables. You can execute these queries using the BigQuery UI, `bq` command-line tool, or programmatically via client libraries.
-    *   **Note:** The queries currently assume the dataset path is `awesome-advice-420021.fifa_world_cup_2022`. You may need to update the project ID in the SQL files to match your GCP project.
+3.  **Running Analysis & ML:** The SQL files (`basic-analysis.sql`, `bigqueryML.sql`, etc.) contain queries and model creation statements designed to run against the loaded BigQuery tables. You can execute these using the BigQuery UI, `bq` command-line tool, or programmatically via client libraries.
+    *   **Note 1:** The queries/models currently assume the dataset path is `awesome-advice-420021.fifa_world_cup_2022`. You may need to update the project ID in the SQL files to match your GCP project.
+    *   **Note 2:** Running `CREATE MODEL` statements in `bigqueryML.sql` will initiate model training jobs and incur BigQuery processing costs.
 
 ## Data Source
 
